@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <script>
+        function validateForm() {
+            let name = document.forms["regForm"]["name"].value.trim();
+            let email = document.forms["regForm"]["email"].value.trim();
+            let password = document.forms["regForm"]["password"].value;
+            let phone = document.forms["regForm"]["phone"].value.trim();
+            let pan = document.forms["regForm"]["pan"].value.trim();
+            let dob = document.forms["regForm"]["dob"].value;
+
+            // Name validation
+            if (name === "") {
+                alert("Name is required");
+                return false;
+            }
+
+            // Email validation
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                alert("Enter valid email");
+                return false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters");
+                return false;
+            }
+
+            // Phone validation (10 digits)
+            if (!/^\d{10}$/.test(phone)) {
+                alert("Enter valid 10-digit phone number");
+                return false;
+            }
+
+            // PAN validation (ABCDE1234F)
+            let panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+            if (!pan.match(panPattern)) {
+                alert("Enter valid PAN number (e.g., ABCDE1234F)");
+                return false;
+            }
+
+            // DOB validation
+            if (dob === "") {
+                alert("Select Date of Birth");
+                return false;
+            }
+
+            alert("Registration Successful!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form name="regForm" onsubmit="return validateForm()">
+
+    Name:<br>
+    <input type="text" name="name"><br><br>
+
+    Email ID:<br>
+    <input type="text" name="email"><br><br>
+
+    Password:<br>
+    <input type="password" name="password"><br><br>
+
+    Phone Number:<br>
+    <input type="text" name="phone"><br><br>
+
+    PAN Card Number:<br>
+    <input type="text" name="pan" placeholder="ABCDE1234F"><br><br>
+
+    Date of Birth:<br>
+    <input type="date" name="dob"><br><br>
+
+    <input type="submit" value="Register">
+    <input type="reset" value="Reset">
+
+</form>
+
+</body>
+</html>
